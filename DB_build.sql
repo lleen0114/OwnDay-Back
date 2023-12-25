@@ -12,6 +12,9 @@ CREATE TABLE `user` (
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO user(user_id, user_name, user_password, user_nickname)
+VALUES("ssafy", "김싸피", "1234", "싸피");
+
 CREATE TABLE `item` (
   `item_id` int NOT NULL AUTO_INCREMENT,
   `item_name` varchar(45) NOT NULL,

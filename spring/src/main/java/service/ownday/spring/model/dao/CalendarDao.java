@@ -1,4 +1,4 @@
 package service.ownday.spring.model.dao;
 
-public class CalendarDao {
+public interface CalendarDao {
 }
