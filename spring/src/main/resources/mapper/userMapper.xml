@@ -1,0 +1,20 @@
+<mapper namespace="service.ownday.spring.model.dao.UserDao">
+    <!-- 유저Id로 유저 정보 가져오기 -->
+    <select id="getUserInfo" parameterType="String" resultType="User">
+        SELECT * FROM user WHERE user_id = #{userId}
+    </select>
+    <!-- 닉네임으로 유저 정보 가져오기 -->
+    <insert id = "getUserInfoByNickname" parameterType="String" resultType = "User">
+        SELECT * FROM user WHERE user_nickname = #{nickname};
+    </insert>
+
+    <insert id="regist" parameterType="User">
+        INSERT INTO user
+        VALUES
+        (#{user_id}, {#user_name}, {user_password}, {user_nickname}, {user_image})
+    </insert>
+
+    <select id ="getAllUser" parameterType="User">
+        select * from user
+    </select>
+</mapper>

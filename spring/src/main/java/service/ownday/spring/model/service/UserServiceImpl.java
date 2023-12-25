@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import service.ownday.spring.model.dao.UserDao;
 import service.ownday.spring.model.dto.User;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
@@ -30,5 +32,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public User login(User user) {
         return userDao.login(user);
+    }
+
+    @Override
+    public List<User> getAllUser(){
+        return userDao.getAllUser();
     }
 }
