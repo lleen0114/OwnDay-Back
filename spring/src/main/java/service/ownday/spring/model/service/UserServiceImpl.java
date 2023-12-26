@@ -1,6 +1,5 @@
 package service.ownday.spring.model.service;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.ownday.spring.model.dao.UserDao;
@@ -9,10 +8,9 @@ import service.ownday.spring.model.dto.User;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
-
-    private UserDao userDao;
+    @Autowired(required=false)
+    UserDao userDao;
 
     @Override
     public User getUserInfo(String userId) {
@@ -35,7 +33,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<User> getAllUser(){
-        return userDao.getAllUser();
+    public List<User> getAllUser() {
+        return null;
     }
 }

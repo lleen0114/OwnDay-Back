@@ -17,6 +17,6 @@ public interface UserService {
     //3. 유저 객체를 받아서 로그인 시키기
     User login(User user);
 
-    //4. 등록되어있는 모든 유저 정보 반환하기
+    //4. 등록되어있는 유저 리스트 반환시키기
     List<User> getAllUser();
 }

@@ -1,27 +1,25 @@
-package service.ownday.spring.controller;
+package service.ownday.spring.model.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import service.ownday.spring.model.dto.User;
 import service.ownday.spring.model.service.UserService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 @Tag(name = "유저 컨트롤러", description = "유저 컨트롤러 확인")
 public class UserController {
-    private final UserService userService;
-
-    public UserController(UserService userService){
-        this.userService = userService;
-    }
+    @Autowired
+    UserService userService;
 
     //1. 유저 Id로 유저 가져오기
     @GetMapping("/id")
-    public ResponseEntity<?> selectUserById(@RequestParam String id){
+    public ResponseEntity<?> selectUserById(@RequestParam(value="id") String id){
         User user = userService.getUserInfo(id);
 
         if(user != null){
@@ -65,6 +63,18 @@ public class UserController {
         //근데 아이디가 겹치는 유저가 있으면 회원가입 실패 시키기
         else{
             return new ResponseEntity<>(0, HttpStatus.NO_CONTENT);
+        }
+    }
+
+    //4. 등록되어있는 모든 유저 가져오기
+    @GetMapping("/alluser")
+    public ResponseEntity<?> getAlluser(){
+        List<User> listUser = userService.getAllUser();
+        if(listUser != null){
+            return new ResponseEntity<List<User>>(listUser, HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<String>("Nothing", HttpStatus.NO_CONTENT);
         }
     }
 

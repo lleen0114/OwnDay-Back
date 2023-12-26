@@ -1,4 +1,7 @@
 package service.ownday.spring.model.service;
 
-public class ChatServiceImpl {
+import org.springframework.stereotype.Service;
+
+@Service
+public class ChatServiceImpl implements  ChatService{
 }

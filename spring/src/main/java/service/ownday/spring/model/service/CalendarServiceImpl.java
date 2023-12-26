@@ -1,4 +1,7 @@
 package service.ownday.spring.model.service;
 
-public class CalendarServiceImpl {
+import org.springframework.stereotype.Service;
+
+@Service
+public class CalendarServiceImpl implements  CalendarService{
 }

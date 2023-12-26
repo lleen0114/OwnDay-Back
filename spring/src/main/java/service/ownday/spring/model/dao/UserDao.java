@@ -1,9 +1,11 @@
 package service.ownday.spring.model.dao;
 
+import org.springframework.stereotype.Repository;
 import service.ownday.spring.model.dto.User;
 
 import java.util.List;
 
+@Repository
 public interface UserDao {
     //1-1. 유저 Id로 유저 정보 가져오기
     User getUserInfo(String userId);
