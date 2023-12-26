@@ -1,5 +1,6 @@
 package com.ownday.controller;
 
+import com.ownday.model.dto.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,14 +30,14 @@ public class UserController {
 
     //2. User 객체를 받아서 로그인 시키기
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam User user){
-        String userId = user.getUserId();
-        String userPassword = user.getUserPassword();
+    public ResponseEntity<?> login(@RequestBody LoginUser loginUser){
+        String userId = loginUser.getUserId();
+        String userPassword = loginUser.getUserPassword();
 
-        User loginUser = userService.getUserInfo(userId);
+        User loginObject = userService.getUserInfo(userId);
 
-        if(loginUser != null && loginUser.getUserPassword().equals(userPassword)){
-            return new ResponseEntity<User>(loginUser, HttpStatus.OK);
+        if(loginObject != null && loginUser.getUserPassword().equals(userPassword)){
+            return new ResponseEntity<User>(loginObject, HttpStatus.OK);
         }
         else{
             return new ResponseEntity<String>("Please check ID or PW", HttpStatus.NO_CONTENT);
@@ -45,7 +46,7 @@ public class UserController {
 
     //3. User 객체를 받아서 회원가입 시키기
     @PostMapping("/regist")
-    public ResponseEntity<Integer> regist(@RequestParam User user){
+    public ResponseEntity<Integer> regist(@RequestBody User user){
 
         String registId = user.getUserId();
         String registNickname = user.getUserNickName();
