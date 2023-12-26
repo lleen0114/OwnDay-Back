@@ -30,14 +30,14 @@ public class UserController {
 
     //2. User 객체를 받아서 로그인 시키기
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginUser loginUser){
-        String userId = loginUser.getUserId();
-        String userPassword = loginUser.getUserPassword();
+    public ResponseEntity<?> login(@RequestBody User user){
+        String userId = user.getUserId();
+        String userPassword = user.getUserPassword();
 
-        User loginObject = userService.getUserInfo(userId);
+        User loginUser = userService.getUserInfo(user.getUserId());
 
-        if(loginObject != null && loginUser.getUserPassword().equals(userPassword)){
-            return new ResponseEntity<User>(loginObject, HttpStatus.OK);
+        if(loginUser != null && loginUser.getUserPassword().equals(userPassword)){
+            return new ResponseEntity<User>(loginUser, HttpStatus.OK);
         }
         else{
             return new ResponseEntity<String>("Please check ID or PW", HttpStatus.NO_CONTENT);
