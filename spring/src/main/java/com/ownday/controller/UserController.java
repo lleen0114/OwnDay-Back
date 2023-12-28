@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     //1. 유저 Id로 유저 가져오기
     @GetMapping("/id")
@@ -34,7 +34,7 @@ public class UserController {
         String userId = user.getUserId();
         String userPassword = user.getUserPassword();
 
-        User loginUser = userService.getUserInfo(user.getUserId());
+        User loginUser = userService.getUserInfo(userId);
 
         if(loginUser != null && loginUser.getUserPassword().equals(userPassword)){
             return new ResponseEntity<User>(loginUser, HttpStatus.OK);
@@ -53,9 +53,8 @@ public class UserController {
         User checkUser = userService.getUserInfo(registId);
         User checkNickname = userService.getUserInfoByNickname(registNickname);
 
-
         //id가 중복되지 않으면 회원가입 시키기
-        if(checkUser != null && checkNickname != null){
+        if(checkUser == null && checkNickname == null){
             userService.registUser(user);
             return new ResponseEntity<>(1, HttpStatus.OK);
         }
