@@ -5,7 +5,6 @@ import com.ownday.model.dto.User;
 
 import java.util.List;
 
-@Repository
 public interface UserDao {
     //1-1. 유저 Id로 유저 정보 가져오기
     public User getUserInfo(String userId);

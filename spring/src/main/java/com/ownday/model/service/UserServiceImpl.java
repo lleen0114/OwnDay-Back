@@ -11,10 +11,11 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
 
     @Autowired
-    private UserDao userDao;
+    UserDao userDao;
 
     @Override
     public User getUserInfo(String userId) {
+
         return userDao.getUserInfo(userId);
     }
 

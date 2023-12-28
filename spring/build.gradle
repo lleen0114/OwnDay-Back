@@ -21,9 +21,9 @@ repositories {
 	mavenCentral()
 }
 
-compileJava {
-	options.compilerArgs << "-parameters"
-}
+//compileJava {
+//	options.compilerArgs << "-parameters"
+//}
 
 dependencies {
 //	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -100,6 +100,12 @@ dependencies {
 
 	//웹소켓 의존성
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+	//Session 의존성
+	implementation 'org.springframework.session:spring-session-core'
+
+	//javax의존성
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.5.4'
 }
 
 tasks.named('test') {
